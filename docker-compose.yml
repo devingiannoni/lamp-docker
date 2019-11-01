@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   swagger:
-    container_name: lamp_swagger
+    container_name: lamp-swagger
     build:
       context: './swagger/'
     volumes:
@@ -14,7 +14,7 @@ services:
       - 8080:8080
   mysql:
     image: mysql:latest
-    container_name: lamp_mysql
+    container_name: lamp-mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: DB
@@ -36,7 +36,7 @@ services:
       - ./code/php/:/var/www/html
       - ./php/:/usr/local/etc/php/
   apache:
-    container_name: lamp_apache
+    container_name: lamp-apache
     build: './apache'
     depends_on: 
       - php
