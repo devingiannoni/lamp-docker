@@ -26,11 +26,20 @@ services:
       - backend
     ports:
       - 3306:3306
+  php:
+    container_name: vantage_php
+    build: 
+      context: './php/'
+    networks:
+      - backend
+    volumes:
+      - ./code/php/:/var/www/html
+      - ./php/:/usr/local/etc/php/
   apache:
     container_name: lamp_apache
     build: './apache'
     depends_on: 
-      # - php
+      - php
       - mysql
     volumes:
       - ./code/apache/index.html:/var/www/html/index.html
