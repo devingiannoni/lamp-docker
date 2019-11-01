@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  swagger:
+    container_name: lamp_swagger
+    build:
+      context: './swagger/'
+    volumes:
+      - ./code/swagger/openapi.yaml:/usr/share/nginx/html/openapi.yaml
+      - ./swagger/openapi.html:/usr/share/nginx/html/openapi.html
+    networks:
+      - frontend
+    ports:
+      - 8080:8080
+networks:
+  frontend:
