@@ -26,15 +26,6 @@ services:
       - backend
     ports:
       - 3306:3306
-  php:
-    container_name: lamp_php
-    build: 
-      context: './php/'
-    networks:
-      - backend
-    volumes:
-      - ./code/:/var/www/html
-      - ./php/:/usr/local/etc/php/
   apache:
     container_name: lamp_apache
     build: './apache'
