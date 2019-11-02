@@ -6,7 +6,7 @@ services:
     build:
       context: './swagger/'
     volumes:
-      - ./code/swagger/openapi.yaml:/usr/share/nginx/html/openapi.yaml
+      - ./src/swagger/openapi.yaml:/usr/share/nginx/html/openapi.yaml
       - ./swagger/openapi.html:/usr/share/nginx/html/openapi.html
     networks:
       - frontend
@@ -21,7 +21,7 @@ services:
       MYSQL_USER: api
       MYSQL_PASSWORD: password
     volumes:
-      - ./code/mysql/:/docker-entrypoint-initdb.d
+      - ./src/mysql/:/docker-entrypoint-initdb.d
     networks:
       - backend
     ports:
@@ -33,7 +33,7 @@ services:
     networks:
       - backend
     volumes:
-      - ./code/php/:/var/www/html
+      - ./src/php/:/var/www/html
       - ./php/:/usr/local/etc/php/
   apache:
     container_name: lamp-apache
@@ -42,7 +42,7 @@ services:
       - php
       - mysql
     volumes:
-      - ./code/apache/index.html:/var/www/html/index.html
+      - ./src/apache/index.html:/var/www/html/index.html
     networks:
       - frontend
       - backend
